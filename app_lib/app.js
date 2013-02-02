@@ -4,10 +4,11 @@
  */
 
 var express = require('express'),
-    routes = require('./routes'),
-    user = require('./routes/user'),
-    http = require('http'),
-    path = require('path');
+routes = require('./routes'),
+user = require('./routes/user'),
+http = require('http'),
+autoopen = require('./middleware/autoOpenBrowser'),
+path = require('path');
 
 var app = express();
 
@@ -19,10 +20,13 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.cookieParser('your secret here'));
-  app.use(express.session());
   app.use(app.router);
-  app.use(require('stylus').middleware(__dirname + '/public'));
+  app.use(require('less-middleware')({
+    dest: __dirname + '/public/stylesheets',
+    src: __dirname + '/css_engines/less',
+    prefix: '/stylesheets',
+    compress: true
+  }));
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
@@ -36,3 +40,5 @@ app.get('/users', user.list);
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
+
+autoopen();

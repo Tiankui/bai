@@ -1,16 +1,21 @@
 {
-  "name": "application-name",
+  "name": "Bai",
+  "author": {
+    "name": "ZhouWeiPing",
+    "email": "eric.prototype@gmail.com"
+  },
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node app"
   },
   "dependencies": {
-    "express": "3.0.6",
+    "express": "3.1.0",
+    "commander" : "*",
     "ejs": "*",
-    "stylus": "*",
-    "redis": "*",
+    "less-middleware": "*",
     "grunt": "*",
-    "grunt-contrib": "*"
+    "grunt-contrib-mincss": "*"
+    
   }
 }

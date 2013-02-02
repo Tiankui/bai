@@ -1,5 +1,5 @@
 function clientErrorHandler(err,req,res,next) {
-  if (req.chr) {
+  if (req.xhr) {
     res.send(500,{error: 'Something blew up!'});
   } else {
     next(err);
