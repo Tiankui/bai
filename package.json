@@ -1,21 +1,20 @@
 {
-  "name": "Bai",
-  "author": {
-    "name": "ZhouWeiPing",
-    "email": "eric.prototype@gmail.com"
-  },
-  "version": "0.0.1",
-  "private": true,
+  "name": "bai",
+  "description" : "Baidu inc.Front-end engine",
+  "author": "ZhouWeiPing",
+  "keywords" : ["bai"],
+  "version": "0.0.3",
   "scripts": {
     "start": "node app"
   },
+  "bin": {
+    "bai": "./bai.js"
+  },
+  "main": "bai",
   "dependencies": {
-    "express": "3.1.0",
-    "commander" : "*",
-    "ejs": "*",
-    "less-middleware": "*",
-    "grunt": "*",
-    "grunt-contrib-mincss": "*"
-    
+    "keypress": "0.1.0",
+    "grunt": "0.3.17",
+    "colors": "~0.6.0",
+    "express": "3.1.0"
   }
 }
