@@ -2,7 +2,7 @@
 
 运行流程
 --------
-使用此框架需要安装`nodejs`,`express`,`grunt`.框架使用`express`做web框架进行静态输出或动态输出.`grunt`执行js,css的合并压缩.
+依赖 express,grunt,但无需全局安装
 
 安装文档
 
@@ -11,6 +11,10 @@
 npm install bai
 ```
 
-文档不断添加之中
+相关资料
 ---------
+- 请运行
+```sh
+    bai -h
+```
 
