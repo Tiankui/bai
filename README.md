@@ -14,6 +14,7 @@ npm install bai
 相关资料
 ---------
 - 请运行
+
 ```sh
     bai -h
 ```
