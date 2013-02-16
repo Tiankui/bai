@@ -1,19 +1,4 @@
 {
-  "name": "bai",
-  "description" : "Baidu inc.(BPIT)-FE前端预编译平台",
-  "author": {
-    "name": "ZhouWeiPing",
-    "email": "eric.prototype@gmail.com"
-  },
-  "keywords" : ["bai"],
-  "version": "0.1.0",
-  "scripts": {
-    "start": "node app"
-  },
-  "bin": {
-    "bai": "./bai.js"
-  },
-  "main" : "bai",
   "dependencies": {
     "ejs": "*",
     "grunt": "*",

@@ -12,6 +12,8 @@ var Bai = require(__dirname + '/lib/commander.js'),
 
 var put = console.log;
 
+console.log(files);
+
 //colors 全局设置所处可用
 colors.setTheme({
   silly: 'rainbow',
@@ -67,8 +69,6 @@ Bai
   .command("run")
   .description(" - 运行开发服务器,监控less文件,根据请求实时更新")
   .action(function () {
-    //cli.task = ["common","dev"];
-    //grunt.cli();
     (require(path.join(process.cwd(),'app.js')));
   });
 
@@ -76,7 +76,7 @@ Bai
   .command('build')
   .description(" - 合并所有assets内css,js文件,输出到 /dist 文件夹")
   .action(function () {
-    cli.tasks = ["default"];
+    cli.tasks = ["build"];
     grunt.cli();
   });
 
