@@ -15,6 +15,7 @@
     "keypress": "0.1.0",
     "grunt": "0.3.17",
     "colors": "~0.6.0",
+    "whet.extend": "0.9.7",
     "express": "3.1.0"
   }
 }
