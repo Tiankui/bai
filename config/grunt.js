@@ -1,7 +1,7 @@
 module.exports = {
   run: function(grunt) {
     grunt.loadTasks('tasks');
-    grunt.loadNpmTasks('grunt-contrib-mincss');
+    grunt.loadNpmTasks('bai');
     grunt.task.run('configure');
   }
 };

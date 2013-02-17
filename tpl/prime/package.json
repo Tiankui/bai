@@ -1,9 +1,10 @@
 {
+  "name": "<%= name %>",
+  "description" : "Baidu inc.Front-end engine",
+  "version": "0.0.1",
+  "private": true,
+  "author": "ZhouWeiPing",
   "dependencies": {
-    "ejs": "*",
-    "grunt": "*",
-    "express": "*",
-    "less-middleware": "*",
-    "grunt-contrib-mincss": "*"
+    "bai": "<%= versions.bai %>"
   }
 }

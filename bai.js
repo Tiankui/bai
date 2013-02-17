@@ -8,11 +8,10 @@ var Bai = require(__dirname + '/lib/commander.js'),
     pkg = require(__dirname + '/package'),
     colors = require('colors'),
     express = require('express'),
-    baiLogo = require(__dirname + '/lib/bai-logo.js');
+    baiLogo = require(__dirname + '/lib/bai-logo.js'),
+    path = require('path');
 
 var put = console.log;
-
-console.log(files);
 
 //colors 全局设置所处可用
 colors.setTheme({
@@ -46,8 +45,8 @@ Bai
     put("  项目路径:  " + dest + "\n\n  项目生成中...\n");
 
     files.copyDir(src,dest,ignore_path);
-    //todo 为模版生成新的PKG文件
-    //files.overwritePackageJson(dest + "/package.json" + project_name);
+    //为模版生成新的PKG文件
+    files.overwritePackageJson(dest + "/package.json", project_name);
     npm.installFrom(dest,function (error,stdout) {
       if (error) {
         put("出错了.请把错误信息记录下来并联系伟平.".error);
@@ -69,14 +68,15 @@ Bai
   .command("run")
   .description(" - 运行开发服务器,监控less文件,根据请求实时更新")
   .action(function () {
-    (require(path.join(process.cwd(),'app.js')));
+    require(path.join(process.cwd(),'app.js'));
   });
 
 Bai
   .command('build')
   .description(" - 合并所有assets内css,js文件,输出到 /dist 文件夹")
   .action(function () {
-    cli.tasks = ["build"];
+    console.log(cli.tasks)
+    cli.tasks = ["dist"];
     grunt.cli();
   });
 
