@@ -1,0 +1,10 @@
+{
+  "name": "<%= name %>",
+  "description" : "Baidu inc.Front-end engine",
+  "version": "0.0.1",
+  "private": true,
+  "author": "BP&IT",
+  "dependencies": {
+    "bai": "<%= versions.bai %>"
+  }
+}

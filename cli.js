@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-require('');
 var Bai, grunt, cli, files, npm, pkg, colors, express, baiLogo, path, put;
 
 Bai = require(__dirname + '/lib/commander.js');
@@ -37,7 +36,7 @@ Bai
   .command('new')
   .description(' - 新建一个项目,需要参数为新项目名称')
   .action(function (project_name) {
-    var src = __dirname + "/tpl/" + "prime",
+    var src = __dirname + "/tpl/" + "base",
         dest = process.cwd() + "/" + project_name,
         ignore_path = process.cwd();
 
@@ -70,14 +69,14 @@ Bai
   .command("run")
   .description(" - 运行开发服务器,监控less文件,根据请求实时更新")
   .action(function () {
-    require(path.join(process.cwd(),'app.js'));
+    require(path.join(process.cwd(),'engine','app.js'));
   });
 
 Bai
   .command('build')
   .description(" - 合并所有assets内css,js文件,输出到 /dist 文件夹")
   .action(function () {
-    cli.tasks = ["dist"];
+    cli.tasks = ["common","dist"];
     grunt.cli();
   });
 

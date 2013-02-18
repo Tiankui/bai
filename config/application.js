@@ -3,7 +3,7 @@ grunt = require('grunt');
 module.exports = {
   pkg: grunt.file.readJSON("package.json"),
 
-  apptasks:{
+  appTasks:{
     common: ["less","concat:js","concat:css"],
     dev: ["server","watch"],
     dist: ["mincss","uglify:js"]
@@ -16,7 +16,7 @@ module.exports = {
         banner: "<%= meta.banner %>"
       },
       files:{
-        "dist/js/app.min.js": "%= files.js.concatenated %"
+        "dist/js/app.min.js": "<%= files.js.concatenated %>"
       }
     }
   },
@@ -32,7 +32,7 @@ module.exports = {
   less: {
     compile: {
       options: {
-        paths: ["css_engines/less"]
+        paths: ["app/css/less"]
       },
       files: {
         "generated/css/app.less.css": "<%= files.less.app %>"
