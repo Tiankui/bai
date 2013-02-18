@@ -3,12 +3,12 @@
   "description" : "Baidu inc.Front-end engine",
   "author": "ZhouWeiPing",
   "keywords" : ["bai"],
-  "version": "0.1.1",
+  "version": "0.1.2",
   "scripts": {
     "start": "node app"
   },
   "bin": {
-    "bai": "./bai.js"
+    "bai": "./cli.js"
   },
   "main": "bai",
   "dependencies": {
