@@ -2,18 +2,27 @@ grunt = require('grunt');
 
 module.exports = {
   pkg: grunt.file.readJSON("package.json"),
-
   appTasks:{
     common: ["less","concat:js","concat:css"],
     dev: ["server","watch"],
     dist: ["mincss","uglify:js"]
   },
 
-  //压缩
+  concat:{
+    js:{
+      src: ["<%= files.js.app %>"],
+      dest: "<%= files.glob.js.concatenated %>"
+    },
+    css:{
+      src: ["<%= files.css.app %>"],
+      dest: "<%= files.glob.css.concatenated %>"
+    }
+  },
+
   uglify:{
     js:{
       option:{
-        banner: "<%= meta.banner %>"
+        banner: "Bai Front-end engine"
       },
       files:{
         "dist/js/app.min.js": "<%= files.js.concatenated %>"
@@ -54,7 +63,7 @@ module.exports = {
 
   watch:{
     js:{
-      files: ["<%= files.glob.js.vendor %>","<%= files.glob.js.app %>"],
+      files: ["<%= files.glob.js.app %>"],
       tasks: ["configure", "concat:js"]
     },
     less:{
@@ -62,6 +71,6 @@ module.exports = {
       tasks: ["configure","less","configure","concat:css"]
     }
   }
-
 };
+
 

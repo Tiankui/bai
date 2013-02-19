@@ -69,7 +69,8 @@ Bai
   .command("run")
   .description(" - 运行开发服务器,监控less文件,根据请求实时更新")
   .action(function () {
-    require(path.join(process.cwd(),'engine','app.js'));
+    cli.tasks = ["common","dev"];
+    grunt.cli();
   });
 
 Bai

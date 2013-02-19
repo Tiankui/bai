@@ -9,8 +9,8 @@ module.exports = {
         generated: "generated/css/app.less.css"
     },
     css: {
-        app: "app/css/*.css",
+        app: "app/css/**/*.css",
         concatenated: "generated/css/app.css",
-        minified: "dist/js/app.min.js"
+        minified: "dist/css/app.min.css"
     }
 };
