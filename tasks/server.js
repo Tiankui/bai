@@ -5,11 +5,11 @@
  Contributor: @dmosher, @searls
 
  Configuration:
- "base" - the path from which to serve static assets from (this should almost always be left to the default value of "generated")
- "web.port" - the port from which to run the development server (defaults to 8000, can be overridden with ENV variable WEB_PORT)
- "apiProxy.port" - the port of the server running an API we want to proxy (does not proxy be default, can be overridden with ENV variable API_PORT)
- "apiProxy.enabled" - set to true to enable API proxying; if Lineman can't respond to a request, it will forward it to the API proxy
- "apiProxy.host" - the host to which API requests should be proxy, defaults to `localhost`)"
+ "base" - 静态服务器开启的文件夹
+ "web.port" - 服务器端口
+ "apiProxy.port" - 代理服务器端口
+ "apiProxy.enabled" - 代理服务器开关
+ "apiProxy.host" - 代理服务器地址
  */
 
 module.exports = function(grunt) {
@@ -20,7 +20,7 @@ module.exports = function(grunt) {
     httpProxy = require("http-proxy");
     loadConfigurationFile = require("./../lib/file-utils").loadConfigurationFile;
 
-    grunt.registerTask("server", "static file & api proxy development server", function() {
+    grunt.registerTask("server", "静态文件和后台API代理服务器", function() {
         var apiPort, apiProxyEnabled, apiProxyHost, app, userConfig, webPort, webRoot;
 
         apiPort = process.env.API_PORT || grunt.config.get("server.apiProxy.port") || 3000;
@@ -31,14 +31,17 @@ module.exports = function(grunt) {
         userConfig = loadConfigurationFile("server");
         app = express();
 
+        //是否开启数据模拟接口
         if (userConfig.drawRoutes) {
             userConfig.drawRoutes(app);
         }
 
         app.configure(function() {
 
-            app.use(express["static"]("" + (process.cwd()) + "/" + webRoot));
+            //开启静态服务器
+            app.use(express["static"]("" + (process.cwd()) + "/" + webRoot));//generated dic
 
+            //是否打开代理
             if (apiProxyEnabled) {
                 app.use(apiProxy(apiProxyHost, apiPort, new httpProxy.RoutingProxy()));
             }
@@ -46,10 +49,10 @@ module.exports = function(grunt) {
             return app.use(express.errorHandler());
         });
 
-        grunt.log.writeln("Starting express web server in \"./generated\" on port " + webPort);
+        grunt.log.writeln("静态服务器: \"./generated\" 端口: " + webPort);
 
         if (apiProxyEnabled) {
-            grunt.log.writeln("Proxying API requests to " + apiProxyHost + ":" + apiPort);
+            grunt.log.writeln("代理服务器: " + apiProxyHost + ":" + apiPort);
         }
 
         return app.listen(webPort);
@@ -58,7 +61,7 @@ module.exports = function(grunt) {
     return apiProxy = function(host, port, proxy) {
         proxy.on("proxyError", function(err, req, res) {
             res.statusCode = 500;
-            res.write("API Proxying to `" + req.url + "` failed with: `" + (err.toString()) + "`");
+            res.write("代理错误! `" + req.url + "` 详细错误: `" + (err.toString()) + "`");
             return res.end();
         });
         return function(req, res, next) {

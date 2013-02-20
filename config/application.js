@@ -4,7 +4,7 @@ module.exports = {
   pkg: grunt.file.readJSON("package.json"),
   appTasks:{
     common: ["less","configure","concat:js","concat:css"],
-    dev: ["watch"],
+    dev: ["server","watch"],
     dist: ["concat:js","concat:css","mincss","uglify:js"]
   },
 
@@ -37,6 +37,20 @@ module.exports = {
       }
     }
   },
+    images: {
+        files: {
+            "app/img/": "<%= files.img.app %>",
+            "vendor/img/": "<%= files.img.vendor %>"
+        },
+        root: "<%= files.glob.img.root %>",
+        dev: {
+            dest: "generated"
+        },
+        dist: {
+            dest: "dist"
+        }
+    },
+
 //细化
   less: {
     compile: {
