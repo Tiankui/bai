@@ -5,7 +5,6 @@ extend = require("whet.extend");
 module.exports = {
     config:{
         express:require('express'),
-        ejs:require('ejs'),
         application:require("./config/application"),
         files:require("./config/files"),
         grunt:require("./config/grunt"),
