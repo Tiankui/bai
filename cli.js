@@ -103,5 +103,4 @@ Bai
         grunt.cli();
     });
 
-
 Bai.parse(process.argv);
