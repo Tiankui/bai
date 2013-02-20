@@ -1,11 +1,6 @@
 /*
- Task: images
- Description: copy images from 'app/img' & 'vendor/img' to 'generated' & 'dist'
- Dependencies: grunt
- Contributor: @searls
-
  Configuration:
- "root" - the path to which images will be copied under 'generated' and 'dist' (default: "img")
+ "root" - 定义拷贝源
  */
 
 module.exports = function(grunt) {

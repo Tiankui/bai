@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
     var expandFiles, _;
     _ = grunt.util._;
+
     expandFiles = function(files, parent) {
         return _(parent || {}).tap(function(parent) {
             return _(files).each(function(file, name) {
@@ -17,6 +18,8 @@ module.exports = function(grunt) {
         var application, expandedFiles, files;
         application = require(process.cwd() + "/engine/config/application");
         files = require(process.cwd() + "/engine/config/files");
+
+        //生成全局文件索引,不包括lib文件夹
         expandedFiles = _(expandFiles(files)).extend({
             glob: files
         });

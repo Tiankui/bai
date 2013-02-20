@@ -1,9 +1,4 @@
 /*
- Task: server
- Description: server static files and proxy API (server-side) requests from another port
- Dependencies: grunt
- Contributor: @dmosher, @searls
-
  Configuration:
  "base" - 静态服务器开启的文件夹
  "web.port" - 服务器端口

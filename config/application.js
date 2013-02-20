@@ -37,10 +37,16 @@ module.exports = {
       }
     }
   },
+    coffee: {
+        compile: {
+            files: {
+                "generated/js/x.coffee.js": "<%= files.coffee.app %>"
+            }
+        }
+    },
     images: {
         files: {
-            "app/img/": "<%= files.img.app %>",
-            "vendor/img/": "<%= files.img.vendor %>"
+            "app/img/": "<%= files.img.app %>"
         },
         root: "<%= files.glob.img.root %>",
         dev: {
