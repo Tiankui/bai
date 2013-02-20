@@ -5,7 +5,7 @@ module.exports = {
   appTasks:{
     common: ["coffee","less","configure","concat:js","concat:css"],
     dev: ["server","watch"],
-    dist: ["concat:js","concat:css","cssmin","uglify:js"]
+    dist: ["uglify:js","cssmin"]
   },
 
   concat:{
@@ -25,12 +25,12 @@ module.exports = {
         banner: "Bai Front-end engine"
       },
       files:{
-        "dist/js/app.min.js": "<%= files.glob.js.concatenated %>"
+        "dist/js/app.min.js": ["<%= files.js.concatenated %>","<%= files.coffee.generated %>"]
       }
     }
   },
 
-  less: {
+  less:{
     compile: {
       options : {
         paths: ["app/css"]
@@ -43,30 +43,31 @@ module.exports = {
 
   cssmin:{
     compress:{
-      file:{
-        "dist/css/app.min.css": "<%= files.glob.css.concatenated %>"
+      files:{
+        "dist/css/app.min.css": ["<%= files.css.concatenated %>","<%= files.less.generated %>"]
       }
     }
   },
+
   coffee: {
-        compile: {
-            files: {
-                "generated/js/app.coffee.js": "<%= files.coffee.app %>"
-            }
-        }
+    compile: {
+      files: {
+        "generated/js/app.coffee.js": "<%= files.coffee.app %>"
+      }
+    }
+  },
+  images: {
+    files: {
+      "app/img/": "<%= files.img.app %>"
     },
-    images: {
-        files: {
-            "app/img/": "<%= files.img.app %>"
-        },
-        root: "<%= files.glob.img.root %>",
-        dev: {
-            dest: "generated"
-        },
-        dist: {
-            dest: "dist"
-        }
+    root: "<%= files.glob.img.root %>",
+    dev: {
+      dest: "generated"
     },
+    dist: {
+      dest: "dist"
+    }
+  },
 
   clean: {
     js: {
@@ -92,22 +93,22 @@ module.exports = {
     }
   },
 
-    watch:{
-        js:{
-            files: ["<%= files.glob.js.app %>"],
-            tasks: ["configure", "concat:js"]
-        },
-        css:{
-            files: "<%= files.glob.css.app %>",
-            tasks: ["configure","concat:css"]
-        },
-        coffee:{
-            files: "<%= files.glob.coffee.app %>",
-            tasks: ["coffee","concat:js"]
-        },
-        less:{
-            files: "<%= files.glob.less.app %>",
-            tasks: ["less","concat:css"]
-        }
+  watch:{
+    js:{
+      files: ["<%= files.glob.js.app %>"],
+      tasks: ["configure", "concat:js"]
+    },
+    css:{
+      files: "<%= files.glob.css.app %>",
+      tasks: ["configure","concat:css"]
+    },
+    coffee:{
+      files: "<%= files.glob.coffee.app %>",
+      tasks: ["coffee","concat:js"]
+    },
+    less:{
+      files: "<%= files.glob.less.app %>",
+      tasks: ["less","concat:css"]
     }
+  }
 };

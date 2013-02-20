@@ -1,7 +1,3 @@
-/**
- * Module dependencies.
- */
-
 //todo 引入bai项目node-modules里的express
 var express = require('bai').config.express,
 less = require('bai').config.less,
