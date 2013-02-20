@@ -5,8 +5,9 @@ module.exports = function(grunt) {
         "grunt-contrib-clean",
         "grunt-contrib-concat",
         "grunt-contrib-jshint",
+        "grunt-contrib-coffee",
         "grunt-contrib-less",
-        "grunt-contrib-mincss",
+        "grunt-contrib-cssmin",
         "grunt-contrib-uglify",
         "grunt-contrib-watch"
     ]).each(function(module) {

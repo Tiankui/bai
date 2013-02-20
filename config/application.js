@@ -3,9 +3,9 @@ grunt = require('grunt');
 module.exports = {
   pkg: grunt.file.readJSON("package.json"),
   appTasks:{
-    common: ["less","configure","concat:js","concat:css"],
+    common: ["coffee","less","configure","concat:js","concat:css"],
     dev: ["server","watch"],
-    dist: ["concat:js","concat:css","mincss","uglify:js"]
+    dist: ["concat:js","concat:css","cssmin","uglify:js"]
   },
 
   concat:{
@@ -30,17 +30,28 @@ module.exports = {
     }
   },
 
-  mincss:{
+  less: {
+    compile: {
+      options : {
+        paths: ["app/css"]
+      },
+      files: {
+        "generated/css/app.less.css": "<%= files.less.app %>"
+      }
+    }
+  },
+
+  cssmin:{
     compress:{
       file:{
         "dist/css/app.min.css": "<%= files.glob.css.concatenated %>"
       }
     }
   },
-    coffee: {
+  coffee: {
         compile: {
             files: {
-                "generated/js/x.coffee.js": "<%= files.coffee.app %>"
+                "generated/js/app.coffee.js": "<%= files.coffee.app %>"
             }
         }
     },
@@ -56,18 +67,6 @@ module.exports = {
             dest: "dist"
         }
     },
-
-//细化
-  less: {
-    compile: {
-      options: {
-        paths: ["app/css/less"]
-      },
-      files: {
-        "generated/css/app.less.css": "<%= files.less.app %>"
-      }
-    }
-  },
 
   clean: {
     js: {
@@ -93,16 +92,22 @@ module.exports = {
     }
   },
 
-  watch:{
-    js:{
-      files: ["<%= files.glob.js.app %>"],
-      tasks: ["configure", "concat:js"]
-    },
-    less:{
-      files: "<%= files.glob.css.app %>",
-      tasks: ["less","concat:css"]
+    watch:{
+        js:{
+            files: ["<%= files.glob.js.app %>"],
+            tasks: ["configure", "concat:js"]
+        },
+        css:{
+            files: "<%= files.glob.css.app %>",
+            tasks: ["configure","concat:css"]
+        },
+        coffee:{
+            files: "<%= files.glob.coffee.app %>",
+            tasks: ["coffee","concat:js"]
+        },
+        less:{
+            files: "<%= files.glob.less.app %>",
+            tasks: ["less","concat:css"]
+        }
     }
-  }
 };
-
-
