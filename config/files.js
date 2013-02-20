@@ -1,6 +1,6 @@
 module.exports = {
     js: {
-        app: "app/js/*.js",
+        app: "app/js/**/*.js",
         concatenated: "generated/js/app.js",
         minified: "dist/js/app.min.js"
     },

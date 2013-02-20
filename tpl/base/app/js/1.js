@@ -1,1 +1,1 @@
-var dsaklshdks;
+var dsaklshdks=1;

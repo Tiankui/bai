@@ -1,1 +1,1 @@
-var dhskjads;
+var dhskjads=2;

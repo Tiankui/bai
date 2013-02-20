@@ -3,9 +3,9 @@ grunt = require('grunt');
 module.exports = {
   pkg: grunt.file.readJSON("package.json"),
   appTasks:{
-    common: ["less","concat:js","concat:css"],
-    dev: ["server","watch"],
-    dist: ["mincss","uglify:js"]
+    common: ["less","configure","concat:js","concat:css"],
+    dev: ["watch"],
+    dist: ["concat:js","concat:css","mincss","uglify:js"]
   },
 
   concat:{
@@ -25,7 +25,7 @@ module.exports = {
         banner: "Bai Front-end engine"
       },
       files:{
-        "dist/js/app.min.js": "<%= files.js.concatenated %>"
+        "dist/js/app.min.js": "<%= files.glob.js.concatenated %>"
       }
     }
   },
@@ -33,11 +33,11 @@ module.exports = {
   mincss:{
     compress:{
       file:{
-        "dist/css/app.min.css": "<%= files.css.concatenated %>"
+        "dist/css/app.min.css": "<%= files.glob.css.concatenated %>"
       }
     }
   },
-
+//细化
   less: {
     compile: {
       options: {
@@ -46,6 +46,18 @@ module.exports = {
       files: {
         "generated/css/app.less.css": "<%= files.less.app %>"
       }
+    }
+  },
+
+  clean: {
+    js: {
+      src: "<%= files.js.concatenated %>"
+    },
+    css: {
+      src: "<%= files.css.concatenated %>"
+    },
+    dist: {
+      src: ["dist", "generated"]
     }
   },
 
@@ -67,8 +79,8 @@ module.exports = {
       tasks: ["configure", "concat:js"]
     },
     less:{
-      files: "<%= files.glob.less.app %>",
-      tasks: ["configure","less","configure","concat:css"]
+      files: "<%= files.glob.css.app %>",
+      tasks: ["less","concat:css"]
     }
   }
 };
