@@ -84,7 +84,7 @@ module.exports = {
   server:{
     base: "generated",
     web: {
-      port: 8000
+      port: 1217
     },
     apiProxy:{
       enabled: false,
