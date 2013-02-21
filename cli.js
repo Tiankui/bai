@@ -60,7 +60,7 @@ Bai
 
 Bai
   .command("run")
-  .description(" - 监控less，coffee文件实时编译。开启服务器在" + "http://localhost:1217")
+  .description(" - 监控less，coffee文件实时编译。开启服务器在" + "http://localhost:1217".warn)
   .action(function () {
     cli.tasks = ["common","dev"];
     grunt.cli();
@@ -76,7 +76,7 @@ Bai
 
 Bai
   .command('clean')
-  .description(" - 清除build文件(方便测试)")
+  .description(" - 清除缓存和压缩后的文件(方便测试)")
   .action(function () {
     cli.tasks = ["clean"];
     grunt.cli();
