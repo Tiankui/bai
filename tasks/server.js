@@ -25,7 +25,12 @@ module.exports = function(grunt) {
     webRoot = grunt.config.get("server.base") || "generated";
     userConfig = loadConfigurationFile("server");
     app = express();
+    console.log(userConfig);
 
+    //加载用户自定义的express配置
+    if (userConfig.expressConfig) {
+      userConfig.expressConfig(app,express);
+    }
     //是否开启数据模拟接口
     if (userConfig.drawRoutes) {
       userConfig.drawRoutes(app);
@@ -35,6 +40,7 @@ module.exports = function(grunt) {
 
       //开启静态服务器
       app.use(express["static"]("" + (process.cwd()) + "/" + webRoot));//generated dic
+
 
       //是否打开代理
       if (apiProxyEnabled) {

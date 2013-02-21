@@ -1,21 +1,32 @@
-/* Define custom server-side HTTP routes for lineman's development server
- *   These might be as simple as stubbing a little JSON to
- *   facilitate development of code that interacts with an HTTP service
- *   (presumably, mirroring one that will be reachable in a live environment).
- *
- * It's important to remember that any custom endpoints defined here
- *   will only be available in development, as lineman only builds
- *   static assets, it can't run server-side code.
- *
- * This file can be very useful for rapid prototyping or even organically
- *   defining a spec based on the needs of the client code that emerge.
- *
- */
+var routers,ejs;
+
+routers = module.exports.routers = ['/index','/detail'];
+ejs = require('./../../node_modules/bai').config.ejs;
 
 module.exports = {
+
+  expressConfig: function (app,express) {
+    app.configure(function () {
+      app.use(ejs);
+      app.set("view engine","ejs");
+      app.set('views', (process.cwd() + '/app/views'));
+      app.use(express.logger('dev'));
+      app.use(express.bodyParser());
+      app.use(express.methodOverride());
+    });
+  },
+
   drawRoutes: function(app) {
-    // app.get('/api/greeting/:message', function(req, res){
-    //   res.json({ message: "OK, "+req.params.message });
-    // });
+    app.get('/api/greeting/:message', function(req, res){
+      res.json({ message: "OK, "+req.params.message });
+    });
+    app.get('/', function(req, res){
+      res.render('',{title:"Bai Fe Engine"});
+    });
+    routers.forEach(function(item){
+      app.get(item,function(req,res){
+        res.render(item.substring(1),{title:"Bai FE Engine"});
+      });
+    });
   }
 };
