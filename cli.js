@@ -52,22 +52,15 @@ Bai
       if (error) {
         put("出错了.请把错误信息记录下来并联系伟平.".error);
       }else{
-        put("  - Bai 为您创建了新的工程: " + project_name + '\n' +
-            "  - 开始新的工程:\n" +
-            "      - 进入工程目录 \n" +
-            "          - `cd " +  project_name + "`\n" +
-            "      - 开始您的工程\n" +
-            "          - `Bai run` 开启您的静态服务器 地址为: " + "`http://localhost:1217`\n".warn.bold +
-            "          - `Bai build` 生成合并后的css和js文件.位置在 " + ("`../" + project_name + "/dest`").warn.bold + "\n\n" +
-            "  更多功能在不断添加之中,期待您的反馈.谢谢使用!\n\n"
-           );
+        put("  cd `" + project_name + '` 开始编写您的项目。' + "\n" +
+            "  帮助请运行 `bai -h`");
       }
     });
   });
 
 Bai
   .command("run")
-  .description(" - 运行开发服务器,监控less文件,根据请求实时更新")
+  .description(" - 监控less，coffee文件实时编译。开启服务器在" + "http://localhost:1217")
   .action(function () {
     cli.tasks = ["common","dev"];
     grunt.cli();
@@ -75,7 +68,7 @@ Bai
 
 Bai
   .command('build')
-  .description(" - 合并所有assets内css,js文件,输出到 /dist 文件夹")
+  .description(" - 打包压缩所有文件到 /dist 文件夹")
   .action(function () {
     cli.tasks = ["common","dist"];
     grunt.cli();
