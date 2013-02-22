@@ -2,13 +2,14 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/css/style.css' />
-    <link rel='stylesheet' href='/css/hello.css' />
-    <link rel='stylesheet' href='/css/hhh.css' />
+    <link rel='stylesheet' href='/css/normalize.css' />
+    <script src="/js/require.js" data-main="main"></script>
   </head>
   <body>
+    <% include blocks/header %>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <a href="#">nihao</a>
+    <% include blocks/footer %>
   </body>
 </html>
