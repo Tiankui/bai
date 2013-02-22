@@ -7,8 +7,8 @@ module.exports = function(grunt) {
     var copy, _;
 
     _ = grunt.util._;
-
     copy = require("./../lib/file-utils").copy;
+
     return grunt.registerTask("images", "拷贝图片", function(target) {
         var destinationPath, targetConfig, taskConfig;
         target = target || "dist";
