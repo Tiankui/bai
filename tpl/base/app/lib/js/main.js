@@ -4,4 +4,4 @@ require.config = {
     jquery: './jquery.js',
     underscore: './underscore.js'
   }
-}
+};

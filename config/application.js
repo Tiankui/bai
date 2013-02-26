@@ -60,7 +60,7 @@ module.exports = (function(_,grunt,af) {
       },
       css:{
         files: "<%= files.glob.css.app %>",
-        tasks: ["configure","concat:css"]
+        tasks: ["configure","less"]
       },
       coffee:{
         files: "<%= files.glob.coffee.app %>",
@@ -68,7 +68,7 @@ module.exports = (function(_,grunt,af) {
       },
       less:{
         files: "<%= files.glob.less.app %>",
-        tasks: ["less","concat:css"]
+        tasks: ["less","less"]
       }
     }
   }).tap(function (exports) {

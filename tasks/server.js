@@ -39,7 +39,7 @@ module.exports = function(grunt) {
 
       //开启静态服务器
       app.use(express["static"]("" + (process.cwd()) + "/" + webRoot));
-      app.use(express["static"]("" + (process.cwd()) + "/" + "lib"));
+      app.use(express["static"]("" + (process.cwd()) + '/app'));
 
       //是否打开代理
       if (apiProxyEnabled) {
