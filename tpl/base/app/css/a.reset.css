@@ -394,3 +394,19 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+/* clear both */
+.clear-fix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden }
+.clear-fix { zoom: 1; display: inline-block; _height: 1px }
+*html .clear-fix { height: 1% }
+*+html .clear-fix { height: 1% }
+.clear-fix { display: block }
+
+/* for webkit */
+textarea { resize: none }
+input[type=text]:focus,
+input[type=password]:focus,
+textarea:focus { outline: none !important }
+
+/* font-family */
+body{font-family:"Microsoft Yahei","微软雅黑",Arial,sans-serif}
