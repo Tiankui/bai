@@ -1,3 +1,7 @@
+/**
+ * Copyright(c) 2013 BJ Tiankui <eric.prototype@gmail.com>
+ * 本子server配置
+ */
 var routers,ejs;
 
 routers = module.exports.routers = ['/index','/detail'];

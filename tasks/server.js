@@ -16,6 +16,7 @@ module.exports = function(grunt) {
   loadConfigurationFile = require("./../lib/file-utils").loadConfigurationFile;
 
   grunt.registerTask("server", "静态文件和后台API代理服务器", function() {
+    grunt.log.writeln('运行本地服务器'.warn);
     var apiPort, apiProxyEnabled, apiProxyHost, app, userConfig, webPort, webRoot;
 
     apiPort = process.env.API_PORT || grunt.config.get("server.apiProxy.port") || 3000;
@@ -49,7 +50,7 @@ module.exports = function(grunt) {
       return app.use(express.errorHandler());
     });
 
-    grunt.log.writeln("静态服务器目录: \"./generated\" 地址:" + ("http://localhost:" + webPort).warn);
+    grunt.log.writeln("静态服务器地址:" + ("http://localhost:" + webPort).warn);
 
     if (apiProxyEnabled) {
       grunt.log.writeln("代理服务器: " + apiProxyHost + ":" + apiPort);

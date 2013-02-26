@@ -14,7 +14,7 @@ module.exports = function(grunt) {
             });
         });
     };
-    return grunt.registerTask("configure", "(Re-)expands all file paths and (re-)initializes the grunt config", function() {
+    return grunt.registerTask("configure", "扩展配置文件, 初始化grunt配置", function() {
         var application, expandedFiles, files;
         application = require(process.cwd() + "/engine/config/application");
         files = require(process.cwd() + "/engine/config/files");
@@ -23,6 +23,7 @@ module.exports = function(grunt) {
         expandedFiles = _(expandFiles(files)).extend({
             glob: files
         });
+        grunt.log.writeln('扩展配置文件,注册Grunt命令集合'.warn);
         return grunt.initConfig(_(application).extend({
             files: expandedFiles
         }));
