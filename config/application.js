@@ -1,58 +1,17 @@
-var grunt = require(__dirname + 'node_modules/grunt');
-var _ = grunt.utils._;
-var assetsFormat = require(__dirname + './tasks/assets.js').assetsFormat;
+var grunt = require('grunt'),
+_ = grunt.util._,
+assetsFormat = require('../lib/assets.js').assetsFormat,
+path = require('path');
 
 module.exports = (function(_,grunt,af) {
   return _({
     pkg: grunt.file.readJSON("package.json"),
     banner:"/*<%= pkg.name %>\n  author:<%= pkg.author %>\n  dependencies:Bai v<%= pkg.dependencies.bai %>\n  <%= grunt.template.today('yyyy-mm-dd') %>\n */\n",
     appTasks:{
-      common: ["coffee","less","configure","assetsFormat","concat:js","concat:css","images:dev"],
+      common: ["coffee","less","configure","concat:js","images:dev"],
       dev: ["server","watch"],
-      dist: ["uglify:js","cssmin"]
+      dist: ["uglify","cssmin"]
     },
-
-    concat:{
-      js:{
-        src: ["<%= files.js.app %>"],
-        dest: "<%= files.glob.js.concatenated %>"
-      },
-      css:{
-        src: ["<%= files.css.app %>"],
-        dest: "<%= files.glob.css.concatenated %>"
-      }
-    },
-
-    uglify:{
-      js:{
-        option:{
-          banner: "Bai Front-end engine"
-        },
-        files:{
-          "dist/js/app.min.js": ["<%= files.js.concatenated %>","<%= files.coffee.generated %>"]
-        }
-      }
-    },
-
-    less:{
-      compile: {
-        options : {
-          paths: ["app/css"]
-        },
-        files: {
-          "generated/css/app.less.css": "<%= files.less.app %>"
-        }
-      }
-    },
-
-    cssmin:{
-      compress:{
-        files:{
-          "dist/css/app.min.css": ["<%= files.css.concatenated %>","<%= files.less.generated %>"]
-        }
-      }
-    },
-
     coffee: {
       compile: {
         files: {
@@ -72,7 +31,6 @@ module.exports = (function(_,grunt,af) {
         dest: "dist"
       }
     },
-
     clean: {
       js: {
         src: "<%= files.js.concatenated %>"
@@ -84,7 +42,6 @@ module.exports = (function(_,grunt,af) {
         src: ["dist", "generated"]
       }
     },
-
     server:{
       base: "generated",
       web: {
@@ -96,7 +53,6 @@ module.exports = (function(_,grunt,af) {
         port: 3000
       }
     },
-
     watch:{
       js:{
         files: ["<%= files.glob.js.app %>"],
@@ -115,8 +71,77 @@ module.exports = (function(_,grunt,af) {
         tasks: ["less","concat:css"]
       }
     }
-
   }).tap(function (exports) {
+    var css = assetsFormat('app/css',{}),
+    js = assetsFormat('app/js',{});
 
+    exports.concat=(function(){
+      var obj = {
+        js:{files:{}}
+      };
+      obj.js.files['generated/js/base.js'] = js.files;
+      if(js.dirs && js.dirs.length !== 0){
+        _.each(js.dirs,function(item){
+          obj.js.files['generated/js/' + path.basename(item) + '.js'] = item + '/*.js';
+        });
+      }
+      return obj;
+    })();
+
+    exports.uglify = (function() {
+      var obj = {},arr;
+      arr = js.dirs||[];
+      arr.push('generated/js/base.js');
+      _.each(arr,function(item){
+        var filename = path.basename(item,'.js');
+        obj[filename] = {
+          option:{
+            banner: "Bai Front-end engine"
+          },
+          files:{}
+        };
+        obj[filename].files ['dist/js/'+filename + '.min.js'] = 'generated/js/' + filename + '.js';
+      });
+      console.log(obj);
+      return obj;
+    })();
+
+    exports.less = (function() {
+      var obj = {
+        compile:{
+          options: {
+            paths: ["app/css"]
+          },
+          files: {}
+        }
+
+      };
+      obj.compile.files['generated/css/base.css'] = css.files;
+      if (css.dirs && css.dirs.length !== 0) {
+        _.each(css.dirs,function(item){
+          obj.compile.files['generated/css/' + path.basename(item) + '.css'] = item + '/*.less';
+        });
+      }
+      return obj;
+    })();
+
+    exports.cssmin = (function() {
+      var obj = {
+        compress:{
+          files:{}
+        }
+      };
+      //tofix
+
+      var arr = css.dirs || [];
+      arr.push('generated/css/base.css');
+      _.each(arr,function (item) {
+        var filename = path.basename(item,'.css');
+        console.log(filename);
+        obj.compress.files['dist/css/' + filename + '.min.css'] = 'generated/css/' + filename + '.css';
+      });
+
+      return obj;
+    })();
   });
 }(_,grunt,assetsFormat));

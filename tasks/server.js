@@ -49,7 +49,7 @@ module.exports = function(grunt) {
       return app.use(express.errorHandler());
     });
 
-    grunt.log.writeln("静态服务器目录: \"./generated\" 地址:" + ("http:localhost" + webPort).warn);
+    grunt.log.writeln("静态服务器目录: \"./generated\" 地址:" + ("http://localhost:" + webPort).warn);
 
     if (apiProxyEnabled) {
       grunt.log.writeln("代理服务器: " + apiProxyHost + ":" + apiPort);
