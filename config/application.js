@@ -8,7 +8,7 @@ module.exports = (function(_,grunt,af) {
     pkg: grunt.file.readJSON("package.json"),
     banner:"/*<%= pkg.name %>\n  author:<%= pkg.author %>\n  dependencies:Bai v<%= pkg.dependencies.bai %>\n  <%= grunt.template.today('yyyy-mm-dd') %>\n */\n",
     appTasks:{
-      common: ["coffee","less","configure","concat:js","images:dev"],
+      common: [/*"coffee",*/"less","configure","concat:js","images:dev"],
       dev: ["server","watch"],
       dist: ["uglify","cssmin"]
     },
