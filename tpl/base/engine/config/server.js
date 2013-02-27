@@ -7,6 +7,7 @@ var routers,ejs;
 routers = module.exports.routers = ['/index','/detail'];
 ejs = require('./../../node_modules/bai').config.ejs;
 
+
 module.exports = {
 
   expressConfig: function (app,express) {
@@ -29,7 +30,8 @@ module.exports = {
     });
     routers.forEach(function(item){
       app.get(item,function(req,res){
-        res.render(item.substring(1),{title:"Bai FE Engine"});
+        res.send('')
+        //res.render(item.substring(1),{title:"Bai FE Engine"});
       });
     });
   }

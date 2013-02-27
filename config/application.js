@@ -114,7 +114,6 @@ module.exports = (function(_,grunt,af) {
         };
         obj[filename].files ['app/dist/js/'+filename + '.min.js'] = 'app/generated/js/' + filename + '.js';
       });
-      console.log(obj);
       return obj;
     })();
 
@@ -152,7 +151,6 @@ module.exports = (function(_,grunt,af) {
         console.log(filename);
         obj.compress.files['app/dist/css/' + filename + '.min.css'] = 'app/generated/css/' + filename + '.css';
       });
-
       return obj;
     })();
   });
