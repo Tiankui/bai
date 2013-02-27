@@ -3,12 +3,16 @@
   "description" : "Baidu inc.Front-end engine",
   "author": "ZhouWeiPing",
   "keywords" : ["bai"],
-  "version": "0.1.6",
+  "version": "0.1.7",
   "scripts": {
     "start": "node app"
   },
   "bin": {
     "bai": "./cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tiankui/bai"
   },
   "main": "./bai.js",
   "dependencies": {
@@ -27,5 +31,8 @@
     "grunt-contrib-uglify": "0.1.1rc6",
     "grunt-contrib-watch": "0.2.0",
     "http-proxy": "0.8.7"
+  },
+  "engine": {
+    "node": ">=0.8.18"
   }
 }
