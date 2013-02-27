@@ -12,7 +12,18 @@ module.exports = (function(_,grunt,af) {
       dev: ["server","watch"],
       dist: ["uglify","cssmin"]
     },
-    coffee: {
+    path:{
+      source:{
+        css: 'app/css',
+        js: 'app/js'
+      },
+      outPut:{
+        generated:{
+         
+        }
+      }
+    },
+    coffee: {//{{{
       compile: {
         files: {
           "generated/js/app.coffee.js": "<%= files.coffee.app %>"
@@ -70,7 +81,7 @@ module.exports = (function(_,grunt,af) {
         files: "<%= files.glob.less.app %>",
         tasks: ["less","less"]
       }
-    }
+    }//}}}
   }).tap(function (exports) {
     var css = assetsFormat('app/css',{}),
     js = assetsFormat('app/js',{});
@@ -79,19 +90,20 @@ module.exports = (function(_,grunt,af) {
       var obj = {
         js:{files:{}}
       };
-      obj.js.files['generated/js/base.js'] = js.files;
+      obj.js.files['app/generated/js/base.js'] = js.files;
       if(js.dirs && js.dirs.length !== 0){
         _.each(js.dirs,function(item){
-          obj.js.files['generated/js/' + path.basename(item) + '.js'] = item + '/*.js';
+          obj.js.files['app/generated/js/' + path.basename(item) + '.js'] = item + '/*.js';
         });
       }
+      console.log(obj);
       return obj;
     })();
 
     exports.uglify = (function() {
       var obj = {},arr;
       arr = js.dirs||[];
-      arr.push('generated/js/base.js');
+      arr.push('app/generated/js/base.js');
       _.each(arr,function(item){
         var filename = path.basename(item,'.js');
         obj[filename] = {
@@ -100,7 +112,7 @@ module.exports = (function(_,grunt,af) {
           },
           files:{}
         };
-        obj[filename].files ['dist/js/'+filename + '.min.js'] = 'generated/js/' + filename + '.js';
+        obj[filename].files ['app/dist/js/'+filename + '.min.js'] = 'app/generated/js/' + filename + '.js';
       });
       console.log(obj);
       return obj;
@@ -116,10 +128,10 @@ module.exports = (function(_,grunt,af) {
         }
 
       };
-      obj.compile.files['generated/css/base.css'] = css.files;
+      obj.compile.files['app/generated/css/base.css'] = css.files;
       if (css.dirs && css.dirs.length !== 0) {
         _.each(css.dirs,function(item){
-          obj.compile.files['generated/css/' + path.basename(item) + '.css'] = item + '/*.less';
+          obj.compile.files['app/generated/css/' + path.basename(item) + '.css'] = item + '/*.less';
         });
       }
       return obj;
@@ -134,11 +146,11 @@ module.exports = (function(_,grunt,af) {
       //tofix
 
       var arr = css.dirs || [];
-      arr.push('generated/css/base.css');
+      arr.push('app/generated/css/base.css');
       _.each(arr,function (item) {
         var filename = path.basename(item,'.css');
         console.log(filename);
-        obj.compress.files['dist/css/' + filename + '.min.css'] = 'generated/css/' + filename + '.css';
+        obj.compress.files['app/dist/css/' + filename + '.min.css'] = 'app/generated/css/' + filename + '.css';
       });
 
       return obj;
