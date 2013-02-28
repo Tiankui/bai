@@ -4,7 +4,7 @@ extend = require("whet.extend");
 
 module.exports = {
     config:{
-        application:require("./config/application"),
+        application:require("./config/app"),
         files:require("./config/files"),
         grunt:require("./config/grunt"),
         ejs:require("ejs"),
