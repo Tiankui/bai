@@ -1,23 +1,15 @@
 module.exports = {
   js: {
-    app: "app/js/**/*.js",
-    vendor: "vendor/css/**/*.css",
-    concatenated: "generated/js/app.js",
-    minified: "dist/js/app.min.js"
+    app: "app/js/**/*.js"
   },
   coffee:{
-    app: "app/js/**/*.coffee",
-    generated: "generated/js/app.coffee.js"
+    app: "app/js/**/*.coffee"
   },
   less: {
-    app: "app/css/**/*.less",
-    generated: "generated/css/app.less.css"
+    app: "app/css/**/*.less"
   },
   css: {
-    app: "app/css/**/*.css",
-    vendor: "vendor/css/**/*.css",
-    concatenated: "generated/css/app.css",
-    minified: "dist/css/app.min.css"
+    app: "app/css/**/*.css"
   },
   img: {
     app: "app/img/**/*.*",
