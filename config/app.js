@@ -125,7 +125,6 @@ module.exports = (function(_,grunt,af) {
       };
       _.each(libarr,function(item){
         var filename = path.basename(item,'.js');
-        console.log(filename);
         obj.libjs.files['app/lib/js/'+filename + '.min.js'] = 'app/lib/js/' + filename + '.js';
       });
       

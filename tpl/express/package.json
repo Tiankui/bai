@@ -1,5 +1,5 @@
 {
-  "name": "Family-Node-server",
+  "name": "<%= name %>",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -9,7 +9,9 @@
   "dependencies": {
     "express": "3.x",
     "ejs": "*",
-    "cas":"*",
-    "bai": "0.1.9"
+    "cas":"*"
+  },
+  "devDependencies":{
+    "bai": "<%= versions.bai %>"
   }
 }
