@@ -57,6 +57,32 @@ Bai
       }
     });
   });
+  
+Bai
+  .command('express')
+  .description(' - 新建一个项目,需要参数为新项目名称')
+  .action(function (project_name) {
+    var src = __dirname + "/tpl/" + "express",
+        dest = process.cwd() + "/" + project_name,
+        ignore_path = process.cwd();
+
+    //todo 项目初始化描述
+
+    baiLogo();
+    put("  项目路径:  " + dest + "\n\n  项目生成中...\n");
+
+    files.copyDir(src,dest,ignore_path);
+    //为模版生成新的PKG文件
+    files.overwritePackageJson(dest + "/package.json", project_name);
+    npm.installFrom(dest,function (error,stdout) {
+      if (error) {
+        put("出错了.请把错误信息记录下来并联系伟平.".error);
+      }else{
+        put("  cd `" + project_name + '` 开始编写您的项目。' + "\n" +
+            "  帮助请运行 `bai -h`");
+      }
+    });
+  });
 
 Bai
   .command("run")
