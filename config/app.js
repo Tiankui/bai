@@ -84,7 +84,9 @@ module.exports = (function(_,grunt,af) {
     }
   }).tap(function (exports) {
     var css = assetsFormat('app/css',{}),
-    js = assetsFormat('app/js',{});
+    js = assetsFormat('app/js',{}),
+    libjs = assetsFormat('app/lib/js',{});
+    //data format: { dirs: [ 'app/js/detail', 'app/js/index' ],files: [ 'app/js/index.js', 'app/js/main.js' ] }
 
     exports.concat=(function(){
       var obj = {
@@ -100,19 +102,33 @@ module.exports = (function(_,grunt,af) {
     })();
 
     exports.uglify = (function() {
-      var obj = {},arr;
+      var obj = {},arr,libarr;
       arr = js.dirs||[];
       arr.push('app/dist/js/base.js');
+      libarr = libjs.files;
+      
+      obj.js = {
+        option:{
+          banner: "Bai Front-end engine"
+        },
+        files:{}
+      };
       _.each(arr,function(item){
         var filename = path.basename(item,'.js');
-        obj[filename] = {
-          option:{
-            banner: "Bai Front-end engine"
-          },
-          files:{}
-        };
-        obj[filename].files ['app/dist/js/'+filename + '.min.js'] = 'app/dist/js/' + filename + '.js';
+        obj.js.files['app/dist/js/'+filename + '.min.js'] = 'app/dist/js/' + filename + '.js';
       });
+      obj.libjs = {
+        option:{
+          banner: "Bai Front-end engine"
+        },
+        files:{}
+      };
+      _.each(libarr,function(item){
+        var filename = path.basename(item,'.js');
+        console.log(filename);
+        obj.libjs.files['app/lib/js/'+filename + '.min.js'] = 'app/lib/js/' + filename + '.js';
+      });
+      
       return obj;
     })();
 
@@ -151,5 +167,6 @@ module.exports = (function(_,grunt,af) {
       });
       return obj;
     })();
+
   });
 }(_,grunt,assetsFormat));
