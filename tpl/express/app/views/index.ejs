@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <!-- dev css:assets -->
+    <!-- base: normalize,color,hf.css -->
+    <link rel="stylesheet" href="static/css/base.css" />
+    <link rel="stylesheet" href="static/css/index.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <% include blocks/index/header %>
+    <% include blocks/index/footer %>
+    <!-- dev js:assets -->
+    <script src="lib/js/a.require.js" data-main="lib/js/main"></script>
+    <script src="static/js/index.js"></script>
+    <script src="static/js/base.js"></script>
+  </body>
+</html>
