@@ -3,7 +3,7 @@
   "description" : "Baidu inc.Front-end engine",
   "author": "ZhouWeiPing",
   "keywords" : ["bai"],
-  "version": "0.2.0",
+  "version": "0.2.1",
   "scripts": {
     "start": "node app"
   },
