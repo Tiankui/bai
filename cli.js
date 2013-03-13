@@ -31,7 +31,6 @@ colors.setTheme({
 Bai.name = pkg.name;
 Bai.description = pkg.description;
 Bai.version(pkg.version);
-
 Bai
   .command('new')
   .description(' - 新建一个项目,需要参数为新项目名称')
@@ -100,13 +99,13 @@ Bai
     grunt.cli();
   });
 
-Bai
-  .command('clean')
-  .description(" - 清除缓存和压缩后的文件(方便测试)")
-  .action(function () {
-    cli.tasks = ["clean"];
-    grunt.cli();
-  });
+//Bai
+  //.command('clean')
+  //.description(" - 清除缓存和压缩后的文件(方便测试)")
+  //.action(function () {
+    //cli.tasks = ["clean"];
+    //grunt.cli();
+  //});
 
 Bai
     .command('*')
