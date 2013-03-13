@@ -8,9 +8,9 @@ module.exports = (function(_,grunt,af) {
     pkg: grunt.file.readJSON("package.json"),
     banner:"/*<%= pkg.name %>\n  author:<%= pkg.author %>\n  dependencies:Bai v<%= pkg.dependencies.bai %>\n  <%= grunt.template.today('yyyy-mm-dd') %>\n */\n",
     appTasks:{
-      common: [/*"coffee",*/"less","configure","concat:js","images:dev"],
+      common: [/*"coffee",*/"less:development","configure","concat:js","images:dev"],
       dev: ["server","watch"],
-      dist: ["uglify","cssmin"]
+      dist: ["less:production","uglify"]
     },
     path:{
       source:{
@@ -43,14 +43,11 @@ module.exports = (function(_,grunt,af) {
       }
     },
     clean: {
-      js: {
-        src: "<%= files.js.concatenated %>"
-      },
-      css: {
-        src: "<%= files.css.concatenated %>"
+      lib: {
+        src: "app/lib/js/*.min.js"
       },
       dist: {
-        src: ["dist", "generated"]
+        src: ["app/dist/css/*.css", "app/dist/js/*.js"]
       }
     },
     server:{
@@ -92,7 +89,9 @@ module.exports = (function(_,grunt,af) {
       var obj = {
         js:{files:{}}
       };
-      obj.js.files['app/dist/js/base.js'] = js.files;
+      
+      if(js.files) obj.js.files['app/dist/js/base.js'] = js.files;
+      
       if(js.dirs && js.dirs.length !== 0){
         _.each(js.dirs,function(item){
           obj.js.files['app/dist/js/' + path.basename(item) + '.js'] = item + '/*.js';
@@ -104,28 +103,28 @@ module.exports = (function(_,grunt,af) {
     exports.uglify = (function() {
       var obj = {},arr,libarr;
       arr = js.dirs||[];
-      arr.push('app/dist/js/base.js');
+      if (js.files) arr.push('app/dist/js/base.js');
       libarr = libjs.files;
-      
-      obj.js = {
-        option:{
-          banner: "Bai Front-end engine"
-        },
+      obj.options = {
+        banner: "/* Bai Front-end engine */\n"
+      }
+      obj.development= {
         files:{}
       };
+      
       _.each(arr,function(item){
         var filename = path.basename(item,'.js');
-        obj.js.files['app/dist/js/'+filename + '.min.js'] = 'app/dist/js/' + filename + '.js';
+        obj.development.files['app/dist/js/'+filename + '.js'] = 'app/dist/js/' + filename + '.js';
       });
-      obj.libjs = {
-        option:{
-          banner: "Bai Front-end engine"
-        },
+
+      obj.lib = {
         files:{}
       };
       _.each(libarr,function(item){
         var filename = path.basename(item,'.js');
-        obj.libjs.files['app/lib/js/'+filename + '.min.js'] = 'app/lib/js/' + filename + '.js';
+        //console.log(!/\.min/.test(filename));
+        if (!/\.min\./.test(item)) 
+          obj.lib.files['app/lib/js/'+filename + '.min.js'] = 'app/lib/js/' + filename + '.js';
       });
       
       return obj;
@@ -133,39 +132,27 @@ module.exports = (function(_,grunt,af) {
 
     exports.less = (function() {
       var obj = {
-        compile:{
+        development:{
           options: {
-            paths: ["app/css"]
+            paths: ["app/css/"],
+          },
+          files: {}
+        },
+        production:{
+          options: {
+            paths: ["app/css/"],
+            yuicompress: true
           },
           files: {}
         }
-
       };
-      obj.compile.files['app/dist/css/base.css'] = css.files;
-      if (css.dirs && css.dirs.length !== 0) {
-        _.each(css.dirs,function(item){
-          obj.compile.files['app/dist/css/' + path.basename(item) + '.css'] = item + '/*.less';
+      if (!!css.files) {
+        _.each(css.files,function(item){
+          obj.development.files['app/dist/css/' + path.basename(item) + '.css'] = item;
+          obj.production.files['app/dist/css/' + path.basename(item) + '.css'] = item;
         });
       }
       return obj;
     })();
-
-    exports.cssmin = (function() {
-      var obj = {
-        compress:{
-          files:{}
-        }
-      };
-      //tofix
-
-      var arr = css.dirs || [];
-      arr.push('app/generated/css/base.css');
-      _.each(arr,function (item) {
-        var filename = path.basename(item,'.css');
-        obj.compress.files['app/dist/css/' + filename + '.min.css'] = 'app/dist/css/' + filename + '.css';
-      });
-      return obj;
-    })();
-
   });
 }(_,grunt,assetsFormat));

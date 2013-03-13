@@ -375,11 +375,11 @@ input[type=password]:focus,
 textarea:focus {
   outline: none !important;
 }
+.b-color {
+  color: #eee;
+}
 /* font-family */
 body {
   font-family: "Microsoft Yahei", "微软雅黑", Arial, sans-serif;
-}
-
-body {
-  background-color: blue;
+  color: #eee;
 }

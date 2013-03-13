@@ -26,13 +26,18 @@ app.configure(function(){
   app.use('/static',express.static(__dirname + '/app/dist'));
   app.use('/static',express.static(__dirname + '/app/img'));
 });
+
+app.set('env','development');
 app.configure('development', function(){
-  app.use(express.errorHandler());
+	console.log('development mode');
+});
+app.configure('production', function(){
+	 console.log('production mode');
 });
 
-app.get('/', routes.index);
-app.get('/getdata', routes.getData);
-app.get('/login', routes.login);
+//加载路由
+routes.init(app);
+
 /**
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

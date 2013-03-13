@@ -99,26 +99,26 @@ Bai
     grunt.cli();
   });
 
-//Bai
-  //.command('clean')
-  //.description(" - 清除缓存和压缩后的文件(方便测试)")
-  //.action(function () {
-    //cli.tasks = ["clean"];
-    //grunt.cli();
-  //});
+Bai
+  .command('clean')
+  .description(" - 清除缓存和压缩后的文件(方便测试)")
+  .action(function () {
+    cli.tasks = ["clean"];
+    grunt.cli();
+  });
 
 Bai
-    .command('*')
-    .description('分开执行内部定义的grunt命令')
-    .action(function(){
-        //watch插件是基于再次调用grunt任务来进行继续.so...
-        cli.tasks = grunt.util._(arguments).
-            chain().toArray().
-            initial().
-            without('run'). //run 不能重复运行
-            value();
+  .command('*')
+  .description('分开执行内部定义的grunt命令')
+  .action(function(){
+      //watch插件是基于再次调用grunt任务来进行继续.so...
+      cli.tasks = grunt.util._(arguments).
+          chain().toArray().
+          initial().
+          without('run'). //run 不能重复运行
+          value();
 
-        grunt.cli();
-    });
+      grunt.cli();
+  });
 
 Bai.parse(process.argv);
