@@ -12,7 +12,7 @@ module.exports = {
     app: "app/css/**/*.css"
   },
   img: {
-    app: "app/img/**/*.*",
+    app: "app/img/*.*",
     root: "img"
   }
 };

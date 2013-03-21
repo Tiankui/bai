@@ -7,8 +7,8 @@ module.exports = (function(_,grunt,af) {
   return _({
     pkg: grunt.file.readJSON("package.json"),
     banner:"/*<%= pkg.name %>\n  author:<%= pkg.author %>\n  dependencies:Bai v<%= pkg.dependencies.bai %>\n  <%= grunt.template.today('yyyy-mm-dd') %>\n */\n",
-    appTasks:{
-      common: [/*"coffee",*/"less:development","configure","concat:js","images:dev"],
+    Tasks:{
+      common: ["coffee","less:development","configure","concat:js","images:dev"],
       dev: ["server","watch"],
       dist: ["less:production","uglify"]
     },
@@ -107,7 +107,7 @@ module.exports = (function(_,grunt,af) {
       libarr = libjs.files;
       obj.options = {
         banner: "/* Bai Front-end engine */\n"
-      }
+      };
       obj.development= {
         files:{}
       };
@@ -134,7 +134,7 @@ module.exports = (function(_,grunt,af) {
       var obj = {
         development:{
           options: {
-            paths: ["app/css/"],
+            paths: ["app/css/"]
           },
           files: {}
         },
