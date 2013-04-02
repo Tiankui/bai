@@ -14,7 +14,8 @@ npm install -g bai
 
 ### 目录结构
 - 当运行`bai new app`时 
-![app](/Tiankui/node-server-proxy/master/app/img/app.png "app")
+![app]
+(https://raw.github.com/Tiankui/node-server-proxy/master/app/img/app.png "app")
 
 #### 贡献者
 [Tiankui](https://github.com/Tiankui "Tiankui")
