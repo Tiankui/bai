@@ -76,7 +76,7 @@ module.exports = (function(_,grunt,af) {
       },
       less:{
         files: "<%= files.glob.less.app %>",
-        tasks: ["less","less"]
+        tasks: ["less:development"]
       }
     }
   }).tap(function (exports) {
