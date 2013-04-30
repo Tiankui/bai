@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+DIR=/home/Yun/daibi
+
+case $1 in
+  start)
+    "node" "$DIR/app.js" 1>>"$DIR/logs/daibi.log" 2>&1 &
+    echo $! > "$DIR/pids/daibi.pid";
+    ;;
+  stop)
+    kill `cat $DIR/pids/daibi.pid`;;
+  *)
+    echo "usage: /etc/init.d/daibi-proxy {start|stop}" ;;
+esac
+exit 0

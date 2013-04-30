@@ -1,6 +1,6 @@
 var grunt = require('grunt'),
 _ = grunt.util._,
-assetsFormat = require('../lib/assets.js').assetsFormat,
+assetsFormat = require('../lib/assets.js'),
 path = require('path');
 
 module.exports = (function(_,grunt,af) {

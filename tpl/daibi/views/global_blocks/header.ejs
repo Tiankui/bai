@@ -1,0 +1,20 @@
+<div class="headbar">
+  
+</div>
+<nav class="header">
+  <ul class="clearfix">
+    <% channel.forEach(function(item){ %>
+      <% if(!item.child){ %>
+        <li class="item"><a href="<%= item.href %>"><%= item.name %></a></li>
+      <%}else{ %>
+        <li class="item more"><a href="<%= item.href %>"><%= item.name %></a>
+          <ul>
+          <% item.child.forEach(function(child_item){ %>
+            <li><a href="<%= child_item.href %>"><%= child_item.name %></a>
+          <% })%>
+          </ul>
+        </li>
+      <% } %>
+    <% }) %>
+  </ul>
+</nav>

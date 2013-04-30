@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 
   express = require("express");
   httpProxy = require("http-proxy");
-  loadConfigurationFile = require("./../lib/file-utils").loadConfigurationFile;
+  loadConfigurationFile = require("./../lib/fileUtils").loadConfigurationFile;
 
   grunt.registerTask("server", "静态文件和后台API代理服务器", function() {
     grunt.log.writeln('运行本地服务器'.warn);

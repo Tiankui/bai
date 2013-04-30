@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <!-- dev css:assets -->
+    <!-- base: normalize,color,hf.css -->
+    <link rel="stylesheet" href="/dist/css/global.less.css" />
+    <link rel="stylesheet" href="/dist/css/main.less.css" />
+    <!-- HTMLshiv for IE -->
+    <!--[if lte IE 9]><script src="/lib/js/html5shiv.min.js"></script><![endif]-->
+  </head>
+  <body>
+    <div class="warpper" style="width:384px;heght:557px;">
+      <div style="width:384px;height:557px;background:url(/img/2.png) no-repeat"></div>
+    </div>
+    <% include ../global_blocks/footer %>
+  </body>
+  <script src="/lib/js/jquery.min.js"></script>
+  <script src="/lib/js/underscore.min.js"></script>
+  <script src="/dist/js/main.js"></script>
+</html>
