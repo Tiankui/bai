@@ -1,13 +1,17 @@
 {
-  "name": "daibi",
+  "name": "<%= name %>",
   "version": "0.1.0",
+  "author": "Tiankui",
   "private": true,
   "scripts": {
     "start": "node app"
   },
-  "author": "Tiankui",
+  "scripts": {
+    "start": "node app"
+  },
   "dependencies": {
-    "express": "3.1.0",
+    "bai": "<%= versions.bai %>"
+    "express": "*",
     "ejs": "*",
     "async":"*",
     "bai": "*"
