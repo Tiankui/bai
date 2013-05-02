@@ -1,0 +1,10 @@
+{
+  "name": "<%= name %>",
+  "description" : "Bai",
+  "version": "0.0.1",
+  "private": true,
+  "author": "FE (BP&IT)",
+  "dependencies": {
+    "bai": "<%= versions.bai %>"
+  }
+}
