@@ -1,18 +1,18 @@
 module.exports = {
   js: {
-    app: "app/js/**/*.js"
-  },
-  coffee:{
-    app: "app/js/**/*.coffee"
+    app: "app/js/**/*.js",
+    base: "app/js"
   },
   less: {
-    app: "app/css/**/*.less"
+    app: "app/css/**/*.less",
+    base: "app/css"
   },
-  css: {
-    app: "app/css/**/*.css"
+  lib: {
+    min: "app/lib/js/*.min.js",
+    base: "app/lib/js"
   },
-  img: {
-    app: "app/img/*.*",
-    root: "img"
+  dist: {
+    js: "app/dist/js/*.js",
+    css: "app/dist/css/*.css"
   }
 };

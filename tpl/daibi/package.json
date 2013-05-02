@@ -10,7 +10,7 @@
     "start": "node app"
   },
   "dependencies": {
-    "bai": "<%= versions.bai %>"
+    "bai": "<%= versions.bai %>",
     "express": "*",
     "ejs": "*",
     "async":"*",

@@ -1,7 +1,7 @@
 var grunt = require('grunt'),
-_ = grunt.util._,
-assetsFormat = require('../lib/assets.js'),
-path = require('path');
+    _ = grunt.util._,
+    assetsFormat = require('../lib/assets.js'),
+    path = require('path');
 
 module.exports = (function(_,grunt,af) {
   return _({
@@ -12,27 +12,9 @@ module.exports = (function(_,grunt,af) {
       dev: ["server","watch"],
       dist: ["less:production","uglify"]
     },
-    path:{
-      source:{
-        css: 'app/css',
-        js: 'app/js'
-      },
-      outPut:{
-        generated:{
-         
-        }
-      }
-    },
-    coffee: {
-      compile: {
-        files: {
-          "generated/js/app.coffee.js": "<%= files.coffee.app %>"
-        }
-      }
-    },
     images: {
       files: {
-        "app/img/": "<%= files.img.app %>"
+        "<%= files.glob.base %>": "<%= files.glob.img.app %>"
       },
       root: "<%= files.glob.img.root %>",
       dev: {
@@ -44,10 +26,10 @@ module.exports = (function(_,grunt,af) {
     },
     clean: {
       lib: {
-        src: "app/lib/js/*.min.js"
+        src: "<%= files.glob.lib %>"
       },
       dist: {
-        src: ["app/dist/css/*.css", "app/dist/js/*.js"]
+        src: ["<%= files.glob.js %>", "<%= files.glob.css %>"]
       }
     },
     server:{
@@ -66,14 +48,6 @@ module.exports = (function(_,grunt,af) {
         files: ["<%= files.glob.js.app %>"],
         tasks: ["configure", "concat:js"]
       },
-      css:{
-        files: "<%= files.glob.css.app %>",
-        tasks: ["configure","less"]
-      },
-      coffee:{
-        files: "<%= files.glob.coffee.app %>",
-        tasks: ["coffee","concat:js"]
-      },
       less:{
         files: "<%= files.glob.less.app %>",
         tasks: ["less:development"]
@@ -84,14 +58,11 @@ module.exports = (function(_,grunt,af) {
     js = assetsFormat('app/js',{}),
     libjs = assetsFormat('app/lib/js',{});
     //data format: { dirs: [ 'app/js/detail', 'app/js/index' ],files: [ 'app/js/index.js', 'app/js/main.js' ] }
-
     exports.concat=(function(){
       var obj = {
         js:{files:{}}
       };
-      
       if(js.files) obj.js.files['app/dist/js/base.js'] = js.files;
-      
       if(js.dirs && js.dirs.length !== 0){
         _.each(js.dirs,function(item){
           obj.js.files['app/dist/js/' + path.basename(item) + '.js'] = item + '/*.js';
@@ -111,7 +82,6 @@ module.exports = (function(_,grunt,af) {
       obj.development= {
         files:{}
       };
-      
       _.each(arr,function(item){
         var filename = path.basename(item,'.js');
         obj.development.files['app/dist/js/'+filename + '.js'] = 'app/dist/js/' + filename + '.js';
@@ -126,7 +96,6 @@ module.exports = (function(_,grunt,af) {
         if (!/\.min\./.test(item)) 
           obj.lib.files['app/lib/js/'+filename + '.min.js'] = 'app/lib/js/' + filename + '.js';
       });
-      
       return obj;
     })();
 

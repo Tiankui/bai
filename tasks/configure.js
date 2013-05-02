@@ -17,6 +17,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask("configure", "扩展配置文件, 初始化grunt配置", function() {
     var application, expandedFiles, files;
+
     application = require(process.cwd() + "/engine/config/application");
     files = require(process.cwd() + "/engine/config/files");
 
