@@ -7,7 +7,7 @@
 module.exports = require('bai').config.extend('application', {
   appTasks:{
     common: [/*"coffee",*/"less:development","concat:js"/*"images:dev"*/],
-    dev: ["server","watch"],
+    dev: [/*"server",*/"watch"],
     dist: ["less:production","uglify"]
   }
 });
