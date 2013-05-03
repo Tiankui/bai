@@ -11,7 +11,9 @@ module.exports = function(grunt) {
   var apiProxy, express, httpProxy, loadConfigurationFile, _;
   _ = grunt.util._;
 
-  express = require("express");
+  console.log(process.cwd()+"node_modules/express");
+
+  express = require(process.cwd()+"/node_modules/express");
   httpProxy = require("http-proxy");
   loadConfigurationFile = require("./../lib/fileUtils").loadConfigurationFile;
 

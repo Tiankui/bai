@@ -11,7 +11,7 @@ var Bai = require('./lib/commander'),
     colors = require('colors'),
     grunt = require('grunt'),
     cli = require('grunt/lib/grunt/cli'),
-    express = require('express'),
+    express = require(process.cwd() + '/node_modules/express')||"please install express",
     path = require('path');
 
 //colors 全局设置所处可用
