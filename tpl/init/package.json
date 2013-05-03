@@ -5,6 +5,8 @@
   "private": true,
   "author": "FE (BP&IT)",
   "dependencies": {
-    "bai": "<%= versions.bai %>"
+    "bai": "<%= versions.bai %>",
+    "express": "*",
+    "ejs": "*"
   }
 }

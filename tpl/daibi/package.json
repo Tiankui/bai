@@ -13,7 +13,6 @@
     "bai": "<%= versions.bai %>",
     "express": "*",
     "ejs": "*",
-    "async":"*",
-    "bai": "*"
+    "async":"*"
   }
 }
