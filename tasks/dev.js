@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-  return grunt.registerTask("dev", "运行开发环境...", function() {
+  grunt.registerTask("dev", "运行开发环境...", function() {
     var appTasks,configJSON;
     configJSON = require(process.cwd() + "/engine/config/application");
     appTasks = configJSON.appTasks || configJSON.Task;
