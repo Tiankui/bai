@@ -50,4 +50,7 @@ Bai.command('*')
      cli.tasks = grunt.util._(arguments).chain().toArray().initial().without('run').value();
      grunt.cli();
    });
+
+Bai.version(require('./package').version);
 Bai.parse(process.argv);
+
