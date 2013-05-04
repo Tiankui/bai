@@ -7,7 +7,7 @@ module.exports = (function(_,grunt,af) {
   return _({
     pkg: grunt.file.readJSON("package.json"),
     banner:"/*<%= pkg.name %>\n  author:<%= pkg.author %>\n  dependencies:Bai v<%= pkg.dependencies.bai %>\n  <%= grunt.template.today('yyyy-mm-dd') %>\n */\n",
-    Tasks:{
+    appTasks:{
       common: ["coffee","less:development","configure","concat:js","images:dev"],
       dev: ["server","watch"],
       dist: ["less:production","uglify"]
