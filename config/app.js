@@ -26,10 +26,10 @@ module.exports = (function(_,grunt,af) {
     },
     clean: {
       lib: {
-        src: "<%= files.glob.lib %>"
+        src: "<%= files.glob.lib.min %>"
       },
       dist: {
-        src: ["<%= files.glob.js %>", "<%= files.glob.css %>"]
+        src: ["<%= files.glob.dist.js %>","<%= files.glob.dist.css %>"]
       }
     },
     server:{

@@ -30,5 +30,6 @@ module.exports = function(grunt) {
     grunt.initConfig(_(application).extend({
       files: expandedFiles
     }));
+    //console.log(expandedFiles);
   });
 };
