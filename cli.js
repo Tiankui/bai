@@ -22,7 +22,7 @@ Bai.command('new')
    .action(createProject);
 
 Bai.command("run")
-   .description(" - 监控less，coffee文件实时编译。开启服务器在" + "http://localhost:1217".warn)
+   .description(" - 监控less.coffee文件实时,并编译.可以配置是否需要开启自带server在" + "http://localhost:1217".warn)
    .action(function () {
      cli.tasks = ["common","dev"];
      grunt.cli();
@@ -36,7 +36,7 @@ Bai.command('build')
    });
 
 Bai.command('clean')
-   .description(" - 清除缓存和压缩后的文件(方便测试)")
+   .description(" - 清除缓存和压缩后的文件(方便测试)" + "\n" + "uglify (js|lib)\nconcat (css|js)\nless (development|production)\n".info +"等其他非常用命令请参看源码config/app.js")
    .action(function () {
      cli.tasks = ["clean"];
      grunt.cli();

@@ -3,7 +3,7 @@
   "description" : "Baidu inc.Front-end engine",
   "author": "ZhouWeiPing",
   "keywords" : ["bai"],
-  "version": "0.3.7",
+  "version": "0.4.0",
   "scripts": {
     "start": "bai [new|run|clean|build]"
   },
