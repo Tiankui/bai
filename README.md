@@ -30,7 +30,7 @@ javascript资源存放处,可以开启使用coffee,编译规则按照子文件�
 - `lib\` 
 `lib\js\` js库如`jquery,underscore`,运行`uglify:lib`时每个文件生成相应压缩文件`*.min.js`在这个目录,`lib\`下的其他目录不进行压缩,你可以自由在此处组织UI库等超大型类库,而不必将其打散在进行复杂的配置.
 - `dist\`  编译后的产物输出地,有css,js两个相应的子目录.
-- `route\`
+- `route\` server的Module,controller目录.
 
 ### 版本变化
 - `v0.4.0` 
